@@ -11,7 +11,7 @@ class Server:
     def __init__(self):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.sock.bind(('0.0.0.0', 10000))
+        self.sock.bind(('192.168.1.110', 13211))
         sock.listen(1)
         print("Server running...")
 
@@ -54,7 +54,7 @@ class Client:
     def __init__(self, address):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        sock.connect((address, 10000))
+        sock.connect((address, 13211))
 
         iThread = threading.Thread(target=self.send_msg, args=(sock,))
         iThread.daemon = True
